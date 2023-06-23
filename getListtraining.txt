@@ -1,0 +1,13 @@
+CREATE FUNCTION getListtraining(IN tema VARCHAR)
+RETURNS TABLE (
+    id BIGINT,
+    tema VARCHAR,
+    nama VARCHAR
+)
+AS $$
+BEGIN
+    RETURN QUERY SELECT id, tema, nama
+    FROM training
+    WHERE nama LIKE '%' || tema || '%';
+END;
+$$ LANGUAGE plpgsql;

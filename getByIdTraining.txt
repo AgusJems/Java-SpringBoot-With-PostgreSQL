@@ -1,0 +1,13 @@
+CREATE getbyIdtraining(IN id BIGINT)
+RETURNS TABLE (
+    id BIGINT,
+    tema VARCHAR,
+    nama VARCHAR
+)
+AS $$
+BEGIN
+    RETURN QUERY SELECT id, tema, nama
+    FROM training
+    WHERE id = id;
+END;
+$$ LANGUAGE plpgsql;

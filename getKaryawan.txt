@@ -1,0 +1,19 @@
+CREATE FUNCTION public.getKaryawan(IN p_id BIGINT)
+RETURNS TABLE (
+    id bigint,
+    nama varchar(200),
+    dob date,
+    alamat varchar(200),
+    status varchar(200),
+    nik varchar(200),
+    npwp varchar(200)
+)
+LANGUAGE plpgsql
+AS $function$
+BEGIN
+    RETURN QUERY
+    SELECT id, nama, dob, alamat, status, nik, npwp
+    FROM public.Karyawan
+    WHERE id=p_id
+END;
+$function$;

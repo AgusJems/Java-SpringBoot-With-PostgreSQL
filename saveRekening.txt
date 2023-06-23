@@ -1,0 +1,21 @@
+CREATE PROCEDURE saveRekening(
+    INOUT id_karyawan BIGINT,
+    INOUT nama VARCHAR,
+    INOUT jenis VARCHAR,
+    INOUT nomor VARCHAR,
+    INOUT id BIGINT,
+    OUT eror_desc VARCHAR,
+    OUT eror_code INTEGER
+)
+AS $$
+BEGIN
+    INSERT INTO rekening (id_karyawan, nama, jenis, nomor, id)
+    VALUES (id_karyawan, nama, jenis, nomor, id);
+    eror_desc := 'Success';
+    eror_code := 0;
+EXCEPTION
+    WHEN OTHERS THEN
+        eror_desc := SQLERRM;
+        eror_code := SQLSTATE;
+END;
+$$ LANGUAGE plpgsql;

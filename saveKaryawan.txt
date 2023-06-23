@@ -1,0 +1,31 @@
+Create Store procedure public.SaveKaryawan(
+INOUT p_nama varchar(200),
+INOUT p_dob date,
+INTOUT p_alamat varchar(200),
+INTOUT p_status varchar(200),
+INTOUT p_nik varchar(200),
+INTOUT p_npwp varchar(200),
+INTOUT p_id long,
+
+OUT error_desc varchar,
+OUT error_code int
+);
+LANGUAGE plpgsql
+
+AS $procedure$
+BEGIN
+p_error_desc:='';
+p_error_code:=0;
+
+
+Insert into public.Karyawan (nama,dob,date,alamat,status,nik,npwp,id) 
+SELECT nextval()
+values(p_nama,p_dob,p_date,p_alamat,p_status,p_nik,p_npwp,p_id)
+
+EXCEPTION
+when OTHERS THEN
+p_error_desc := SQLERRM;
+p_error_code := SQLSTATE;
+
+end
+$procedure$

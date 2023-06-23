@@ -1,0 +1,24 @@
+Create procedure public.updateKaryawan (
+INOUT p_nama varchar(200),
+INOUT p_dob date,
+INOUT p_alamat varchar(200),
+INOUT p_status varchar(200),
+INOUT p_nik varchar(200),
+INOUT p_npwp varcahr(200),
+INOUT p_id bigint,
+OUT error_desc varchar,
+OUT error_code int
+);
+LANGUAGE plpgsql
+
+AS $procedure$
+BEGIN
+p_error_desc:='';
+p_error_code:=0;
+
+Update public.karyawan set p_nama=nama,p_dob=dob,p_alamat=alamat,p_status=status,p_nik=nik,p_npwp=npwp,p_id=id
+WHERE id=p_id
+
+END
+$procedure$
+;

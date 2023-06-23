@@ -1,0 +1,20 @@
+CREATE  PROCEDURE saveTrainingKaryawan(
+    INOUT id_karyawan BIGINT,
+    INOUT id_training BIGINT,
+    INOUT tanggal_training DATE,
+    INOUT id BIGINT,
+    OUT eror_desc VARCHAR,
+    OUT eror_code INTEGER
+)
+AS $$
+BEGIN
+    INSERT INTO karyawan_training (id_karyawan, id_training, tanggal_training, id)
+    VALUES (id_karyawan, id_training, tanggal_training, id);
+    eror_desc := 'Success';
+    eror_code := 0;
+EXCEPTION
+    WHEN OTHERS THEN
+        eror_desc := SQLERRM;
+        eror_code := SQLSTATE;
+END;
+$$ LANGUAGE plpgsql;

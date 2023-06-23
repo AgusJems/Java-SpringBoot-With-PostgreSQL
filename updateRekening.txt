@@ -1,0 +1,22 @@
+CREATE  updateRekening(
+    INOUT id_karyawan BIGINT,
+    INOUT nama VARCHAR,
+    INOUT jenis VARCHAR,
+    INOUT nomor VARCHAR,
+    INOUT id BIGINT,
+    OUT eror_desc VARCHAR,
+    OUT eror_code INTEGER
+)
+AS $$
+BEGIN
+    UPDATE rekening
+    SET id_karyawan = id_karyawan, nama = nama, jenis = jenis, nomor = nomor
+    WHERE id = id;
+    eror_desc := 'Success';
+    eror_code := 0;
+EXCEPTION
+    WHEN OTHERS THEN
+        eror_desc := SQLERRM;
+        eror_code := SQLSTATE;
+END;
+$$ LANGUAGE plpgsql;

@@ -1,0 +1,41 @@
+Create table Karyawan (
+id int Not null,
+nama varchar(100)Not Null,
+jk  varchar(10)Not Null,
+dob date Not null,
+status varchar(100) not null,
+alamat varchar(200) not null,
+PRIMARY KEY (id)
+);
+
+Create table karyawanTraining(
+id int Not null,
+id_Karyawan int not null,
+id_training int not null,
+tanggal training date,
+PRIMARY KEY(id)
+);
+
+Create table detailKaryawan(
+id int not null,
+id_karyawan int not null,
+nik varchar(16)not null,
+npwp varchar(100)not null
+PRIMARY KEY(id)
+);
+
+Create table rekening(
+id int not null,
+id_karyawan not null,
+nama varchar(200) not null,
+jenis varchar(200) not null,
+nomor varchar(200) not null,
+primary key (id)
+);
+
+create table rekening (
+id int not null,
+tema varchar (200),
+nama_pengajar varchar(200)
+primary key (id)
+);

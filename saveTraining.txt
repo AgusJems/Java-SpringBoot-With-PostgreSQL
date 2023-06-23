@@ -1,0 +1,28 @@
+Create Store procedure public.SaveTraining(
+INOUT p_tema varchar(200),
+INOUT p_nama varchar(200),
+INTOUT p_id long,
+
+
+OUT error_desc varchar,
+OUT error_code int
+);
+LANGUAGE plpgsql
+
+AS $procedure$
+BEGIN
+p_error_desc:='';
+p_error_code:=0;
+
+
+Insert into public.Training (tema,namaPengajar,id) 
+SELECT nextval()
+values(p_tema,p_nama,p_id)
+
+EXCEPTION
+when OTHERS THEN
+p_error_desc := SQLERRM;
+p_error_code := SQLSTATE;
+
+end
+$procedure$
